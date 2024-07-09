@@ -25,9 +25,7 @@ size_t ByteStream::write(const string &data) {
 }
 
 //! \param[in] len bytes will be copied from the output side of the buffer
-string ByteStream::peek_output(const size_t len) const {
-    return string(_deq.cbegin(), _deq.cbegin()+len);
-}
+string ByteStream::peek_output(const size_t len) const { return string(_deq.cbegin(), _deq.cbegin() + len); }
 
 //! \param[in] len bytes will be removed from the output side of the buffer
 void ByteStream::pop_output(const size_t len) {
@@ -47,34 +45,18 @@ std::string ByteStream::read(const size_t len) {
     return ret;
 }
 
-void ByteStream::end_input() {
-    _end_input = true;
-}
+void ByteStream::end_input() { _end_input = true; }
 
-bool ByteStream::input_ended() const {
-    return _end_input;
-}
+bool ByteStream::input_ended() const { return _end_input; }
 
-size_t ByteStream::buffer_size() const {
-    return _deq.size();
-}
+size_t ByteStream::buffer_size() const { return _deq.size(); }
 
-bool ByteStream::buffer_empty() const {
-    return _deq.empty();
-}
+bool ByteStream::buffer_empty() const { return _deq.empty(); }
 
-bool ByteStream::eof() const {
-    return _end_input and _deq.empty();
-}
+bool ByteStream::eof() const { return _end_input and _deq.empty(); }
 
-size_t ByteStream::bytes_written() const {
-    return _bytes_written;
-}
+size_t ByteStream::bytes_written() const { return _bytes_written; }
 
-size_t ByteStream::bytes_read() const {
-    return _bytes_written - _deq.size();
-}
+size_t ByteStream::bytes_read() const { return _bytes_written - _deq.size(); }
 
-size_t ByteStream::remaining_capacity() const {
-    return _capacity - _deq.size();
-}
+size_t ByteStream::remaining_capacity() const { return _capacity - _deq.size(); }
