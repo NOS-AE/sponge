@@ -79,7 +79,7 @@ size_t StreamReassembler::unassembled_bytes() const {
 
 bool StreamReassembler::empty() const { return _segments.empty(); }
 
-StreamReassembler::Segment& StreamReassembler::Segment::operator+=(const StreamReassembler::Segment &seg) {
+StreamReassembler::Segment &StreamReassembler::Segment::operator+=(const StreamReassembler::Segment &seg) {
     if (not is_mergable(seg)) {
         std::ostringstream out;
         out << "fail to merge Segment[" << _index << "," << _index + _data.size() << "] and Segment[" << seg._index
