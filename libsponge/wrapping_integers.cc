@@ -26,7 +26,7 @@ WrappingInt32 wrap(uint64_t n, WrappingInt32 isn) { return WrappingInt32(isn + s
 //! and the other stream runs from the remote TCPSender to the local TCPReceiver and
 //! has a different ISN.
 uint64_t unwrap(WrappingInt32 n, WrappingInt32 isn, uint64_t checkpoint) {
-    uint64_t candidate1 = checkpoint & 0xffffffff00000000 | static_cast<uint32_t>(n - isn);
+    uint64_t candidate1 = (checkpoint & 0xffffffff00000000) | static_cast<uint32_t>(n - isn);
     uint64_t candidate2;
     if (candidate1 > checkpoint) {
         candidate2 = candidate1 - (1ul << 32);
